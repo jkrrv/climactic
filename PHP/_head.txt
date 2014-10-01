@@ -1,0 +1,236 @@
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<?php
+
+
+$siteName="Climactic BETA";
+$indexUrl="http://housing.drexelforchrist.org/";
+
+switch($_GET["dev"]) {
+case "local":
+  $baseHref="http://housing.drexelforchrist.org/climactic/";
+  $devMode="local";
+  break;
+default:
+  //$baseHref="http://" . file_get_contents('http://jkrrv.freehostia.com/ip.txt') . "/personal/";
+  $baseHref="http://housing.drexelforchrist.org/climactic/";
+}
+
+if ($devMode=="local") {
+  $userLoggedIn="jkrrv";
+} else {
+  $userLoggedIn=null;
+}
+?>
+
+
+
+
+<html>
+	<head>
+
+
+<!-- to make IE do as it should: -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+
+
+
+<style type="text/css">
+img {
+  border:0;
+}
+body {
+  line-height:24px;
+  margin:0px; 
+  background-color: #000;
+  color:#fff;
+  font-family: Trebuchet MS, Verdana, Arial, Saab;
+  font-size: 16px; 
+}
+a:link, a:visited {
+  color:#fff;
+  text-decoration:underline;
+}
+a:hover {
+  color:#ff0;
+  text-decoration:none;
+}
+a:active {
+  color:#f00;
+  text-decoration:underline;
+}
+.hidden {
+  display:none;
+}
+
+
+</style>
+
+<style type="text/css">
+@media Screen {
+.Footer {
+  background-image:url('_formatting/footerBG.png');
+  background-repeat:repeat-x; 
+  margin: 0px;
+}
+a:link.FootText, a:visited.FootText, .Footer {
+  color:#888;
+}
+a:hover.FootText {
+  color:#0f0;
+}
+a:active.FootText {
+  color:#ff0;
+}
+div.yellowError {
+  background-image:url('_formatting/error-yellow.png');
+  border:5px solid #ff0;
+  padding:5px;
+  background-color:#003;
+}
+div.redError {
+  background-image:url('_formatting/error-red.png');
+  border:5px solid #f00;
+  padding:5px;
+}
+h1, .h1 {
+display: block;
+line-height: 34px;
+font-size: 34px;
+margin: 0;
+color: #cdd;
+font-weight: normal;
+text-shadow: 2px 2px 2px #669;
+padding: 0;
+}
+h2.error, p.error, span.error {
+  margin:5px;
+  line-height:16px;
+  text-shadow: #000 1px 1px 1px;
+  color:#fff;
+}
+hr {
+  display:none;
+}
+}
+@media Print {
+.Footer {
+  clear:both;
+  position:relative;
+  left:0px;
+  bottom:0px;
+}
+.noPrint {
+display:none;
+}
+}
+
+</style>
+
+
+<!-- error box declarations -->
+<?php
+function errorBox($color,$position,$title,$text) {
+	if ($position=="inline") {
+		echo "<div style='width:500px; position: relative; text-align:center; margin-left:auto; margin-right:auto;' class='" . $color . "Error' id='" . $idName . "'>";
+		echo "<img src='_formatting/error-exclam.png' style='float:left; position: relative; top:-1px; left:2px; margin:5px;' alt='!' />";
+		echo "<h2 class='error' style='position:relative; left:-25px;'>" . $title . "</h2>";
+		echo "<p class='error'>" . $text . "</p>";
+		echo "</div>";
+	} elseif ($position=="TR") {
+		echo "<div style='";
+		if ($title=="hide") { echo "display:none; "; };
+ 		echo "position:fixed; z-index:8; float:top; right:-5px; top:-5px; text-align:center; vertical-align:middle; padding:8px;' class='" . $color . "Error'";
+		if ($text=="PageExpireWarning") {
+			echo " id='PageExpireWarning' onClick='expireReset(" . $GLOBALS['pageExpireTime'] . ")'>";
+			echo "<span style='font-size:12px; line-height:12px;' class='error' >Logging off in <br /></span>";
+			echo "<span style='font-size:30px; line-height:30px;' class='error' id='PageExpireWarningS'>30</span><br />";
+			echo "<span style='font-size:12px; line-height:12px;' class='error' >seconds.  <br />Click to postpone.</span>";
+		} else {
+			echo ">";
+			echo "<p class='error'>" . $text . "</p>";
+		}
+		echo "</div>";
+	}
+}
+?>
+
+
+<!-- TITLE -->
+<?php
+echo "<title>";
+if ($pageTitle==null) {
+	echo "Housing for Christ ";
+	echo $siteName;
+	if ($pageName<>"index") {
+		echo " - ";
+		echo $pageName;
+	}
+}
+echo "</title>";
+?>
+
+
+
+	</head>
+
+
+
+<!-- 	BODY	BODY	BODY	BODY	BODY	BODY	BODY	-->
+
+
+	<body<?php if($userLoggedIn<>null) { echo " onLoad='expireCountStart()' onClick='expireReset(" . $pageExpireTime . ")'"; }?>>
+
+<?php
+	if ($userLoggedIn<>null) { 
+		errorBox("yellow", "TR", "hide", "PageExpireWarning");
+		echo "<script type='text/javascript' src='_expireCountdown.js'></script>";
+	} else {
+		echo "<script type='text/javascript'>";
+		echo "function expireReset(time) {";
+		echo " ;";
+		echo "}";
+		echo "</script>";
+	}
+?>
+
+
+		<table style="width:100%; height:auto; min-height:100%;" cellpadding="0" cellspacing="0"><tr>
+			<td style="vertical-align:top; background-color: #003;"><div style="height:159px; margin:0px; background-image:url('<?php echo $baseHref; ?>_formatting/top-fade.png'); text-align:center; vertical-align:top;"><a href="<?php echo $indexUrl; ?>"><img src="<?php echo $baseHref; ?>_formatting/face.png" style="position:relative; top:0;"></a></div>
+
+
+				<div style="height:47px; text-align:center; vertical-align:top; margin:-29px 0 -24px 0; z-index:10;">
+					<table width="100%" height="41" cellspacing=0>
+						<tr>
+							<td style="height:47px; width:30%; background-position:top right; background-repeat:no-repeat; background-image:url('<?php echo $baseHref; ?>_formatting/window-l.png');" ></td>
+							<td style="height:47px; background-position:top left; text-align:center; verical-align: middle; background-image:url('<?php echo $baseHref; ?>_formatting/window-bg.png');" >
+								<?php
+									if ($pageName="index") {
+										echo $siteName;
+									} else {
+										echo $pageName;
+									}
+								?>
+							</td>
+							<td style="height:47px; width:30%; background-position:top left; background-repeat:no-repeat; background-image:url('<?php echo $baseHref; ?>_formatting/window-r.png');" ></td>
+						</tr>
+					</table>
+				</div> 
+				<div style="text-align:left; margin:35px 20px 20px 20px; height:100%;">
+
+<noscript><?php errorBox("red","inline","Javascript Disabled","Javascript is currently disabled on your computer.  To use this site, you must enable it."); ?></noscript>
+
+
+
+
+<?php 
+include $_SERVER['DOCUMENT_ROOT'] . '/personal/_script/ajaxAlert.php';
+?>
+
+
+
