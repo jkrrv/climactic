@@ -3,6 +3,8 @@ Climactic
 
 Started as a project for a Java course.  Uses an Arduino, Java app, and PHP scripts to allow thermostat control via a webpage.
 
+Active devleopment when the heat won't turn on. 
+
 
 Basic System Design
 -------------------
@@ -14,8 +16,6 @@ The Java application does all of the data manipulation and decision-making.  It 
 THe PHP portion provides the actual UI.  The webserver (IIS in my case) that serves the PHP files middle-mans commands regarding temperature.  
 
 The Matlab portion does the graphs and is (currently) executed manually. 
-
-The user accesses a webpage that is rendered by PHP.  The php server
 
 
 Major Known Design Issues
