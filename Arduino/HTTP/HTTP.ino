@@ -13,9 +13,6 @@ byte mac[] = {
 // for manual configuration:
 IPAddress ip(192,168,1,201);
 
-// initialize the library instance:
-EthernetClient client;
-
 char server[] = "www.arduino.cc";
 
 unsigned long lastConnectionTime = 0;          // last time you connected to the server, in milliseconds
@@ -44,36 +41,49 @@ void setup() {
 }
 
 void loop() {
-  // if there's incoming data from the net connection.
-  // send it out the serial port.  This is for debugging
-  // purposes only:
-  if (client.available()) {
-    char c = client.read();
-    Serial.print(c);
-  } 
-
-  // if there's no net connection, but there was one last time
-  // through the loop, then stop the client:
-  if (!client.connected() && lastConnected) {
-    Serial.println();
-    Serial.println("disconnecting.");
-    client.stop();
-  }
-
-  // if you're not connected, and ten seconds have passed since
-  // your last connection, then connect again and send data:
-  if(!client.connected() && (millis() - lastConnectionTime > postingInterval)) {
-    httpRequest();
-  }
+  while (millis() - lastConnectionTime < postingInterval) {}
   
+  httpDo();
   
-  // store the state of the connection for next time through
-  // the loop:
-  lastConnected = client.connected();
+}
+
+
+void httpDo() {
+  // initialize the library instance:
+  EthernetClient client;
+
+  while (true) { // break'd when connection ends or fails.
+  
+    // if you're not connected, and ten seconds have passed since
+    // your last connection, then connect again and send data:
+    if(!client.connected()) {
+      if(!httpConnect()) {
+        Serial.println("Connection Failed.");
+        break;
+      }
+    }
+  
+    // if there's incoming data from the net connection.
+    // send it out the serial port.  This is for debugging
+    // purposes only:
+    if (client.available()) {
+      char c = client.read();
+      Serial.print(c);
+    } 
+  
+    // if there's no net connection, but there was one last time
+    // through the loop, then stop the client:
+    if (!client.connected() && lastConnected) {
+  //    Serial.println();
+  //    Serial.println("disconnecting.");
+      client.stop();
+      break;
+    }
+  }
 }
 
 // this method makes a HTTP connection to the server:
-void httpRequest() {
+int httpConnect() {
   
   // if there's a successful connection:
   if (client.connect(server, 80)) {
@@ -84,14 +94,16 @@ void httpRequest() {
     client.println("User-Agent: arduino-ethernet");
     client.println("Connection: close");
     client.println();
-
+    lastConnected = client.connected();
     // note the time that the connection was made:
     lastConnectionTime = millis();
+    return 1; // success
   } else {
     // if you couldn't make a connection:
     Serial.println("connection failed");
     Serial.println("disconnecting.");
     client.stop();
+    return 0; // error
   }
 }
 
