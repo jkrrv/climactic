@@ -15,7 +15,8 @@ class HttpReq {
     String body;
     String headers;
   private:
-    String server;
+    String reqHost;
+    String resource;
     int port;
     int httpConnect();
     EthernetClient client;

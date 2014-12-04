@@ -7,7 +7,8 @@
 #define httpPortionBody 0
 
 
-String server;
+String reqHost;
+String resource = "/";
 int port;
 EthernetClient client;
 boolean lastConnected = false; 
@@ -16,14 +17,23 @@ int httpStatus = 0;
 String body = "";
 String headers = "";
 
-HttpReq::HttpReq(String s, int p) { // Constructor
-  server = s;
+HttpReq::HttpReq(String url, int p) { // Constructor
+  int urlBreak = url.indexOf("/");
+  if (urlBreak > 0) {
+    reqHost = url.substring(0, urlBreak);
+    //resource = url.substring(urlBreak);
+  } else {
+    reqHost = url;
+    //resource = url.substring(urlBreak);
+  }
+  Serial.println("ReqHost: " + reqHost);
+  Serial.println("Resourc: " + resource);
   port = p;
   parsePortion = httpPortionStatus;
 };
 
-HttpReq::HttpReq(String s) { // Constructor
-  HttpReq(s, 80); 
+HttpReq::HttpReq(String url) { // Constructor
+  HttpReq(url, 80); 
 };
 
 HttpReq::~HttpReq() { // Destructor
@@ -79,14 +89,17 @@ int HttpReq::execute() { // process request.
 
 int HttpReq::httpConnect() {
   // if there's a successful connection:
-  char *buf = (char*)server.c_str(); //TODO: make sure this is correct.
+  Serial.println(reqHost);
+  char *buf = (char*)reqHost.c_str(); //TODO: make sure this is correct.
+  Serial.println(buf);
   if (client.connect(buf, port)) {
 #ifdef HTTP_REQ_DEBUG
     Serial.println("connecting...");
 #endif
     // send the HTTP PUT request:
-    client.println("GET /eml/messages/501.pheml HTTP/1.1");
-    client.println("Host: " + server);
+    client.println("GET " + resource + " HTTP/1.1");
+    Serial.println("GET " + resource + " HTTP/1.1");
+    client.println("Host: " + reqHost);
     client.println("User-Agent: arduino-ethernet");
     client.println("Connection: close");
     client.println();
