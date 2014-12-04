@@ -15,6 +15,7 @@ class HttpReq {
     String body;
     String headers;
   private:
+    void __construct(String, int);
     String reqHost;
     String resource;
     int port;

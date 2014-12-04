@@ -7,7 +7,7 @@
 #define httpPortionBody 0
 
 
-String reqHost;
+String server;
 String resource = "/";
 int port;
 EthernetClient client;
@@ -18,27 +18,30 @@ String body = "";
 String headers = "";
 
 HttpReq::HttpReq(String url, int p) { // Constructor
-  int urlBreak = url.indexOf("/");
-  if (urlBreak > 0) {
-    reqHost = url.substring(0, urlBreak);
-    //resource = url.substring(urlBreak);
-  } else {
-    reqHost = url;
-    //resource = url.substring(urlBreak);
-  }
-  Serial.println("ReqHost: " + reqHost);
-  Serial.println("Resourc: " + resource);
-  port = p;
-  parsePortion = httpPortionStatus;
+  __construct(url, p);
 };
 
 HttpReq::HttpReq(String url) { // Constructor
-  HttpReq(url, 80); 
+  __construct(url, 80);
 };
 
 HttpReq::~HttpReq() { // Destructor
   //nothing to do...
 };
+
+
+void HttpReq::__construct(String url, int p) {
+  int urlBreak = url.indexOf("/");
+  if (urlBreak > 0) {
+    server = url.substring(0, urlBreak);
+    resource = url.substring(urlBreak);
+  } else {
+    server = url;
+    resource = "/";
+  }
+  port = p;
+  parsePortion = httpPortionStatus;
+}
 
 
 
@@ -89,17 +92,14 @@ int HttpReq::execute() { // process request.
 
 int HttpReq::httpConnect() {
   // if there's a successful connection:
-  Serial.println(reqHost);
-  char *buf = (char*)reqHost.c_str(); //TODO: make sure this is correct.
-  Serial.println(buf);
+  char *buf = (char*)server.c_str(); //TODO: make sure this is correct.
   if (client.connect(buf, port)) {
 #ifdef HTTP_REQ_DEBUG
     Serial.println("connecting...");
 #endif
     // send the HTTP PUT request:
     client.println("GET " + resource + " HTTP/1.1");
-    Serial.println("GET " + resource + " HTTP/1.1");
-    client.println("Host: " + reqHost);
+    client.println("Host: " + server);
     client.println("User-Agent: arduino-ethernet");
     client.println("Connection: close");
     client.println();
@@ -108,8 +108,7 @@ int HttpReq::httpConnect() {
     return 1; // success
   } else {
     // if you couldn't make a connection:
-    Serial.println("connection failed");
-    Serial.println("disconnecting.");
+    Serial.println("connection failed. Disconnecting.");
     client.stop();
     return 0; // error
   }

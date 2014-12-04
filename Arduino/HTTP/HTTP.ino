@@ -18,7 +18,8 @@ IPAddress ip(192,168,1,201);
 unsigned long lastConnectionTime = 0;          // last time you connected to the server, in milliseconds
 const unsigned long postingInterval = 10*1000;  // delay between updates, in milliseconds
 
-HttpReq r = HttpReq("drexelforchrist.org");
+
+HttpReq r = HttpReq("drexelforchrist.org/about");
 
 void setup() {
   // start serial port:
