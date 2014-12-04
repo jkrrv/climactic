@@ -19,7 +19,7 @@ unsigned long lastConnectionTime = 0;          // last time you connected to the
 const unsigned long postingInterval = 10*1000;  // delay between updates, in milliseconds
 
 
-HttpReq r = HttpReq("drexelforchrist.org/about");
+
 
 void setup() {
   // start serial port:
@@ -43,9 +43,10 @@ void setup() {
 
 void loop() {
   
+  
+  HttpReq r = HttpReq("drexelforchrist.org/about");
   r.execute();
-  Serial.print(r.headers);
-  Serial.print(r.body);
+  Serial.println(r.httpStatus);
   
   char charBuf[r.body.length()+1];
   r.body.toCharArray(charBuf, r.body.length()+1);

@@ -14,6 +14,7 @@ class HttpReq {
     int execute();
     String body;
     String headers;
+    int httpStatus;
   private:
     void __construct(String, int);
     String reqHost;
