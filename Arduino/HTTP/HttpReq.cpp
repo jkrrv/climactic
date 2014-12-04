@@ -1,21 +1,29 @@
 #include <Ethernet.h>
 #include "HttpReq.h"; // include the declaration
 
-#define HTTP_REQ_STATUS 2
-#define HTTP_REQ_HEADER 1
-#define HTTP_REQ_BODY 0
+/* not pretty, but effective */
+#define httpPortionStatus 2
+#define httpPortionHeader 1
+#define httpPortionBody 0
 
-#define HTTP_REQ_DEBUG
 
 String server;
+int port;
 EthernetClient client;
 boolean lastConnected = false; 
 String responseBuffer = "";
-int parsePortion = HTTP_REQ_STATUS;
 int httpStatus = 0;
+String body = "";
+String headers = "";
+
+HttpReq::HttpReq(String s, int p) { // Constructor
+  server = s;
+  port = p;
+  parsePortion = httpPortionStatus;
+};
 
 HttpReq::HttpReq(String s) { // Constructor
-  server = s;
+  HttpReq(s, 80); 
 };
 
 HttpReq::~HttpReq() { // Destructor
@@ -63,7 +71,7 @@ int HttpReq::execute() { // process request.
       lastConnected = false;
       client.stop();
       //break;
-      parsePortion = HTTP_REQ_STATUS; // reset to Status for next request.
+      parsePortion = httpPortionStatus; // reset to Status for next request.
       return 1; //success
     }
   }
@@ -72,11 +80,13 @@ int HttpReq::execute() { // process request.
 int HttpReq::httpConnect() {
   // if there's a successful connection:
   char *buf = (char*)server.c_str(); //TODO: make sure this is correct.
-  if (client.connect(buf, 80)) {
+  if (client.connect(buf, port)) {
+#ifdef HTTP_REQ_DEBUG
     Serial.println("connecting...");
+#endif
     // send the HTTP PUT request:
-    client.println("GET /latest.txt HTTP/1.1");
-    client.println("Host: www.arduino.cc");
+    client.println("GET /eml/messages/501.pheml HTTP/1.1");
+    client.println("Host: " + server);
     client.println("User-Agent: arduino-ethernet");
     client.println("Connection: close");
     client.println();
@@ -94,14 +104,37 @@ int HttpReq::httpConnect() {
 
 
 void HttpReq::parseResponseLine(String line) {
-  Serial.println(parsePortion);
-  if (parsePortion == HTTP_REQ_STATUS) {
-    Serial.println("here");
-    if (line.startsWith("HTTP")) {
-      int space1 = line.indexOf(' ');
-      int space2 = line.indexOf(' ', space1+1);
-      httpStatus = line.substring(space1+1, space2).toInt();
-      Serial.println("Status: " + httpStatus);
-    }
+  switch (parsePortion) {
+    case httpPortionStatus:
+      if (line.startsWith("HTTP")) {
+        httpStatus = 0;
+        int space1 = line.indexOf(' ');
+        int space2 = line.indexOf(' ', space1+1);
+        httpStatus = line.substring(space1+1, space2).toInt();
+        if (httpStatus > 0) {
+#ifdef HTTP_REQ_DEBUG
+          Serial.println("Status: " + String(httpStatus));
+#endif
+          parsePortion = httpPortionHeader;
+          headers = "";
+          break;
+        }
+      }
+      
+      
+    case httpPortionHeader:
+      if (line != "\r") {
+        headers += line;
+        headers += "\n";
+      } else {
+        parsePortion = httpPortionBody;
+        body = "";
+      }
+      break;
+      
+      
+    case httpPortionBody:
+      body += line;
+      body += "\n";
   }
 }

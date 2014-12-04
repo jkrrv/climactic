@@ -8,11 +8,15 @@
 
 class HttpReq {
   public:
+    HttpReq(String, int);
     HttpReq(String);
     ~HttpReq();
     int execute();
-    String server;
+    String body;
+    String headers;
   private:
+    String server;
+    int port;
     int httpConnect();
     EthernetClient client;
     boolean lastConnected; 
