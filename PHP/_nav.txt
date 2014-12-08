@@ -1,9 +1,0 @@
--Projects
--Writing
---Formal
-*-Informal
-*Contact
--Guestbook
--Links
-*-Resources
-^Login/out
