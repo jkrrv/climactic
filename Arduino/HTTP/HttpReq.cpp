@@ -1,5 +1,5 @@
 #include <Ethernet.h>
-#include "HttpReq.h"; // include the declaration
+#include "HttpReq.h"; // include the magical request library
 
 /* not pretty, but effective */
 #define httpPortionStatus 2
@@ -7,21 +7,23 @@
 #define httpPortionBody 0
 
 
-String server;
+String reqServer;
 String resource = "/";
 int port;
 EthernetClient client;
 boolean lastConnected = false; 
+String reqBody = "";
+String method = "GET";
 String responseBuffer = "";
 int httpStatus = 0;
 String body = "";
 String headers = "";
 
-HttpReq::HttpReq(String url, int p) { // Constructor
+HttpReq::HttpReq(String url, int p) { // Constructor  DO NOT INCLUDE PROTOCOL 
   __construct(url, p);
 };
 
-HttpReq::HttpReq(String url) { // Constructor
+HttpReq::HttpReq(String url) { // Constructor  Port and resource will be extracted from url string.
   __construct(url, 80);
 };
 
@@ -31,14 +33,29 @@ HttpReq::~HttpReq() { // Destructor
 
 
 void HttpReq::__construct(String url, int p) {
+  method = "GET";
   int urlBreak = url.indexOf("/");
+  int urlPort = url.indexOf(":");
   if (urlBreak > 0) {
-    server = url.substring(0, urlBreak);
+    reqServer = url.substring(0, urlBreak);
     resource = url.substring(urlBreak);
   } else {
-    server = url;
+    reqServer = url;
     resource = "/";
   }
+  if (urlPort > 0 && urlPort < urlBreak) {
+    p = reqServer.substring(urlPort+1).toInt();
+    reqServer = reqServer.substring(0, urlPort);
+  }
+  
+#ifdef HTTP_REQ_DEBUG
+  Serial.print("reqServer: ");
+  Serial.println(reqServer);
+  Serial.print("resource:  ");
+  Serial.println(resource);
+  Serial.print("port:      ");
+  Serial.println(p);
+#endif
   port = p;
   parsePortion = httpPortionStatus;
 }
@@ -92,17 +109,28 @@ int HttpReq::execute() { // process request.
 
 int HttpReq::httpConnect() {
   // if there's a successful connection:
-  char *buf = (char*)server.c_str(); //TODO: make sure this is correct.
+  char *buf = (char*)reqServer.c_str(); //TODO: make sure this is correct.
   if (client.connect(buf, port)) {
 #ifdef HTTP_REQ_DEBUG
     Serial.println("connecting...");
+    Serial.println(method + " " + resource + " HTTP/1.1");
+    Serial.println("Host: " + reqServer);
+    Serial.println("User-Agent: arduino-ethernet");
+    Serial.println("Connection: close");
+    Serial.println();
+    if (method == "POST") {
+      Serial.println(reqBody);
+    }
 #endif
-    // send the HTTP PUT request:
-    client.println("GET " + resource + " HTTP/1.1");
-    client.println("Host: " + server);
+    // send the HTTP request:
+    client.println(method + " " + resource + " HTTP/1.1");
+    client.println("Host: " + reqServer);
     client.println("User-Agent: arduino-ethernet");
     client.println("Connection: close");
     client.println();
+    if (method == "POST") {
+      client.println(reqBody);
+    }
     lastConnected = client.connected();
     // note the time that the connection was made:
     return 1; // success

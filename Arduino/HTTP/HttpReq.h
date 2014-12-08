@@ -12,6 +12,8 @@ class HttpReq {
     HttpReq(String);
     ~HttpReq();
     int execute();
+    String reqBody;
+    String method;
     String body;
     String headers;
     int httpStatus;
