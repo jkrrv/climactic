@@ -1,0 +1,12 @@
+K:\Dev\climactic\windowsKinect\SlideshowGestures-WPF\bin\Debug\RandomDecisionForest.Proposal.Harness.XML
+K:\Dev\climactic\windowsKinect\SlideshowGestures-WPF\bin\Debug\SlideshowGestures-WPF.exe
+K:\Dev\climactic\windowsKinect\SlideshowGestures-WPF\bin\Debug\SlideshowGestures-WPF.pdb
+K:\Dev\climactic\windowsKinect\SlideshowGestures-WPF\bin\Debug\Microsoft.Samples.Kinect.SwipeGestureRecognizer.dll
+K:\Dev\climactic\windowsKinect\SlideshowGestures-WPF\obj\Debug\SlideshowGestures-WPF.csprojResolveAssemblyReference.cache
+K:\Dev\climactic\windowsKinect\SlideshowGestures-WPF\obj\Debug\MainWindow.baml
+K:\Dev\climactic\windowsKinect\SlideshowGestures-WPF\obj\Debug\MainWindow.g.cs
+K:\Dev\climactic\windowsKinect\SlideshowGestures-WPF\obj\Debug\App.g.cs
+K:\Dev\climactic\windowsKinect\SlideshowGestures-WPF\obj\Debug\SlideshowGestures-WPF_MarkupCompile.cache
+K:\Dev\climactic\windowsKinect\SlideshowGestures-WPF\obj\Debug\SlideshowGestures-WPF.g.resources
+K:\Dev\climactic\windowsKinect\SlideshowGestures-WPF\obj\Debug\SlideshowGestures-WPF.exe
+K:\Dev\climactic\windowsKinect\SlideshowGestures-WPF\obj\Debug\SlideshowGestures-WPF.pdb
