@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="therm">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/therm.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
