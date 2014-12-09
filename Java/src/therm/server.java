@@ -78,16 +78,16 @@ public class server implements Runnable {
                             
                         }
                     } else {
-                        float[] nums = Core.AnalyThread.getNums();
-                        try {
-                            Core.AnalyThread.setTarget(Integer.parseInt(gets));
-                        } catch (Exception e) {
-                            // not a number, ignore and keep going.
-                        }
-                        for (int i=0; i<nums.length;i++) {
-                            pr.print( nums[i] );
-                            pr.print( "," );
-                        }
+//                        float[] nums = Core.AnalyThread.getNums();
+//                        try {
+//                            Core.AnalyThread.setTarget(Integer.parseInt(gets));
+//                        } catch (Exception e) {
+//                            // not a number, ignore and keep going.
+//                        }
+//                        for (int i=0; i<nums.length;i++) {
+//                            pr.print( nums[i] );
+//                            pr.print( "," );
+//                        }
                     }
                     pr.flush();
                 } finally {
