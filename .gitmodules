@@ -1,0 +1,6 @@
+[submodule "RasPi/dmx-mongoose"]
+	path = RasPi/dmx-mongoose
+	url = https://github.com/jkrrv/dmx-mongoose.git
+[submodule "Arduino/DHT-sensor-library"]
+	path = Arduino/DHT-sensor-library
+	url = https://github.com/adafruit/DHT-sensor-library.git
