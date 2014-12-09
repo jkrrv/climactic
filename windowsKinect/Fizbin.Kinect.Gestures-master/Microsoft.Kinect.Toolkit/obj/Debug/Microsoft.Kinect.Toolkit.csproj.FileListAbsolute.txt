@@ -1,0 +1,10 @@
+C:\Users\user\Downloads\Fizbin.Kinect.Gestures-master\Microsoft.Kinect.Toolkit\bin\Debug\Microsoft.Kinect.Toolkit.dll
+C:\Users\user\Downloads\Fizbin.Kinect.Gestures-master\Microsoft.Kinect.Toolkit\bin\Debug\Microsoft.Kinect.Toolkit.pdb
+C:\Users\user\Downloads\Fizbin.Kinect.Gestures-master\Microsoft.Kinect.Toolkit\obj\Debug\KinectSensorChooserUI.baml
+C:\Users\user\Downloads\Fizbin.Kinect.Gestures-master\Microsoft.Kinect.Toolkit\obj\Debug\KinectSensorChooserUI.g.cs
+C:\Users\user\Downloads\Fizbin.Kinect.Gestures-master\Microsoft.Kinect.Toolkit\obj\Debug\Microsoft.Kinect.Toolkit_MarkupCompile.cache
+C:\Users\user\Downloads\Fizbin.Kinect.Gestures-master\Microsoft.Kinect.Toolkit\obj\Debug\Microsoft.Kinect.Toolkit.g.resources
+C:\Users\user\Downloads\Fizbin.Kinect.Gestures-master\Microsoft.Kinect.Toolkit\obj\Debug\Microsoft.Kinect.Toolkit.Properties.Resources.resources
+C:\Users\user\Downloads\Fizbin.Kinect.Gestures-master\Microsoft.Kinect.Toolkit\obj\Debug\Microsoft.Kinect.Toolkit.csproj.GenerateResource.Cache
+C:\Users\user\Downloads\Fizbin.Kinect.Gestures-master\Microsoft.Kinect.Toolkit\obj\Debug\Microsoft.Kinect.Toolkit.dll
+C:\Users\user\Downloads\Fizbin.Kinect.Gestures-master\Microsoft.Kinect.Toolkit\obj\Debug\Microsoft.Kinect.Toolkit.pdb

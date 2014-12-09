@@ -2,8 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="13bc98e4-e1eb-43c0-8437-e2b3dfc9ae98" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../RasPi/dmx-mongoose" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../.gitmodules" />
+      <change type="DELETED" beforePath="K:\Dev\climactic\windowsKinect\SlideshowGestures-WPF\App.xaml" afterPath="" />
+      <change type="DELETED" beforePath="K:\Dev\climactic\windowsKinect\SlideshowGestures-WPF\App.xaml.cs" afterPath="" />
+      <change type="DELETED" beforePath="K:\Dev\climactic\windowsKinect\SlideshowGestures-WPF\Images\Kinect.ico" afterPath="" />
+      <change type="DELETED" beforePath="K:\Dev\climactic\windowsKinect\SlideshowGestures-WPF\Images\Logo.png" afterPath="" />
+      <change type="DELETED" beforePath="K:\Dev\climactic\windowsKinect\SlideshowGestures-WPF\Images\Status.png" afterPath="" />
+      <change type="DELETED" beforePath="K:\Dev\climactic\windowsKinect\SlideshowGestures-WPF\MainWindow.xaml" afterPath="" />
+      <change type="DELETED" beforePath="K:\Dev\climactic\windowsKinect\SlideshowGestures-WPF\MainWindow.xaml.cs" afterPath="" />
+      <change type="DELETED" beforePath="K:\Dev\climactic\windowsKinect\SlideshowGestures-WPF\Properties\AssemblyInfo.cs" afterPath="" />
+      <change type="DELETED" beforePath="K:\Dev\climactic\windowsKinect\SlideshowGestures-WPF\SlideshowGestures-WPF.csproj" afterPath="" />
+      <change type="DELETED" beforePath="K:\Dev\climactic\windowsKinect\SlideshowGestures-WPF\SlideshowGestures-WPF.sln" afterPath="" />
+      <change type="DELETED" beforePath="K:\Dev\climactic\windowsKinect\SlideshowGestures-WPF\bin\Debug\RandomDecisionForest.Proposal.Harness.XML" afterPath="" />
+      <change type="DELETED" beforePath="K:\Dev\climactic\windowsKinect\SlideshowGestures-WPF\bin\Debug\SlideshowGestures-WPF.vshost.exe.manifest" afterPath="" />
+      <change type="DELETED" beforePath="K:\Dev\climactic\windowsKinect\SlideshowGestures-WPF\obj\Debug\App.g.cs" afterPath="" />
+      <change type="DELETED" beforePath="K:\Dev\climactic\windowsKinect\SlideshowGestures-WPF\obj\Debug\App.g.i.cs" afterPath="" />
+      <change type="DELETED" beforePath="K:\Dev\climactic\windowsKinect\SlideshowGestures-WPF\obj\Debug\MainWindow.baml" afterPath="" />
+      <change type="DELETED" beforePath="K:\Dev\climactic\windowsKinect\SlideshowGestures-WPF\obj\Debug\MainWindow.g.cs" afterPath="" />
+      <change type="DELETED" beforePath="K:\Dev\climactic\windowsKinect\SlideshowGestures-WPF\obj\Debug\MainWindow.g.i.cs" afterPath="" />
+      <change type="DELETED" beforePath="K:\Dev\climactic\windowsKinect\SlideshowGestures-WPF\obj\Debug\SlideshowGestures-WPF.csproj.FileListAbsolute.txt" afterPath="" />
+      <change type="DELETED" beforePath="K:\Dev\climactic\windowsKinect\SlideshowGestures-WPF\obj\Debug\SlideshowGestures-WPF.g.resources" afterPath="" />
     </list>
     <ignored path="Climactic.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,8 +49,8 @@
       <file leaf-file-name="Core.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/therm/Core.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4047619" vertical-offset="2414" max-vertical-offset="3655">
-              <caret line="152" column="47" selection-start-line="152" selection-start-column="47" selection-end-line="152" selection-end-column="47" />
+            <state vertical-scroll-proportion="0.43333334" vertical-offset="379" max-vertical-offset="3655">
+              <caret line="33" column="4" selection-start-line="33" selection-start-column="4" selection-end-line="33" selection-end-column="4" />
               <folding>
                 <element signature="e#0#10873#0" expanded="true" />
                 <element signature="imports" expanded="true" />
@@ -485,12 +502,12 @@
       <created>1418074517064</created>
       <option name="number" value="Default" />
       <updated>1418074517064</updated>
-      <workItem from="1418074523999" duration="16177000" />
+      <workItem from="1418074523999" duration="16971000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16177000" />
+    <option name="totallyTimeSpent" value="16971000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="800" y="0" width="800" height="860" extended-state="0" />
@@ -572,8 +589,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/therm/Core.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4047619" vertical-offset="2414" max-vertical-offset="3655">
-          <caret line="152" column="47" selection-start-line="152" selection-start-column="47" selection-end-line="152" selection-end-column="47" />
+        <state vertical-scroll-proportion="0.43333334" vertical-offset="379" max-vertical-offset="3655">
+          <caret line="33" column="4" selection-start-line="33" selection-start-column="4" selection-end-line="33" selection-end-column="4" />
           <folding>
             <element signature="e#0#10873#0" expanded="true" />
             <element signature="imports" expanded="true" />
